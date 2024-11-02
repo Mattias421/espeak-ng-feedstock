@@ -1,0 +1,59 @@
+# Jinja variables help maintain the recipe as you'll update the version only here.
+# Using the name variable with the URL in line 16 is convenient
+# when copying and pasting from another recipe, but not really needed.
+{% set name = "espeak-ng" %}
+{% set version = "1.51" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/espeak-ng/espeak-ng/archive/refs/tags/{{ version }}.tar.gz
+  sha256: f0e028f695a8241c4fa90df7a8c8c5d68dcadbdbc91e758a97e594bbb0a3bdbf
+
+
+build:
+  number: 0
+  skip: True # [not linux]
+
+requirements:
+  build:
+    - {{ compiler('c') }}   
+#    - {{ stdlib('c') }}
+#    - make
+#    - autoconf
+#    - automake
+#    - libtool
+#    - pkg-config
+    
+# TODO find host requirements
+
+# outputs:
+#   - name: espeak-ng
+#     script: install-espeak-ng.sh
+
+
+about:
+  home: https://github.com/espeak-ng/espeak-ng/tree/master
+  summary: 'eSpeak NG is an open source speech synthesizer that supports more than hundred languages and accents. '
+  description: |
+    The eSpeak NG is a compact open source software text-to-speech synthesizer for Linux, Windows, Android and other operating systems. It supports more than 100 languages and accents. It is based on the eSpeak engine created by Jonathan Duddington. eSpeak NG uses a "formant synthesis" method. This allows many languages to be provided in a small size. The speech is clear, and can be used at high speeds, but is not as natural or smooth as larger synthesizers which are based on human speech recordings. It also supports Klatt formant synthesis, and the ability to use MBROLA as backend speech synthesizer.
+  # Remember to specify the license variants for BSD, Apache, GPL, and LGPL.
+  # Use the SPDX identifier, e.g: GPL-2.0-only instead of GNU General Public License version 2.0
+  # See https://spdx.org/licenses/
+  license:
+    - GPL-3.0-only
+    - Apache-2.0
+    - BSD-2-Clause
+
+  license_file: 
+    - LICENSE_GPL.txt
+    - LICENSE_BSD.txt
+    - LICENSE_Apache.txt
+    - LICENSE_espeak.txt
+    - LICENSE.txt
+
+extra:
+  recipe-maintainers:
+    - Mattias421

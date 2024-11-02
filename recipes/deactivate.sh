@@ -1,0 +1,1 @@
+unset ESPEAK_DATA_PATH
